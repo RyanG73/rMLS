@@ -15,6 +15,3 @@ fte_matches <- function(start_season=2017,end_season=2020){
     dplyr::filter(season <= end_season)
   return(matches)
 }
-
-
-

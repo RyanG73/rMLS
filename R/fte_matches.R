@@ -3,6 +3,7 @@
 #' This function allows me to test setup
 #' @param fte_matches, defaults to 2017,2020
 #' @keywords fivethirtyeight, fte, matches
+#' @importFrom magrittr "%>%"
 #' @export
 #' @examples \dontrun{fte_matches()}
 #' fte_matches()

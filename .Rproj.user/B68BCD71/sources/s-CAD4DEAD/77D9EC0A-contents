@@ -3,6 +3,7 @@
 #' This function allows me to test setup
 #' @param fte_rankings, defaults to 2017,2020
 #' @keywords fivethirtyeight, fte, rankings
+#' @importFrom magrittr "%>%"
 #' @export
 #' @examples \dontrun{fte_rankings()}
 #' fte_rankings()

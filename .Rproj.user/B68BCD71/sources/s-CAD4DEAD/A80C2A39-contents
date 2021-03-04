@@ -12,9 +12,6 @@ fte_matches(start_season = 2017, end_season = 2020)
 \description{
 This function allows me to test setup
 }
-\examples{
-\dontrun{fte_matches()}
-}
 \keyword{fivethirtyeight,}
 \keyword{fte,}
 \keyword{matches}

@@ -3,4 +3,5 @@
 export(fte_matches)
 export(fte_rankings)
 export(tester)
-importFrom(magrittr,"%>%")
+importFrom(magrittr,"fte_rankings()")
+importFrom(magrittr,)

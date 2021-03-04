@@ -5,8 +5,7 @@
 #' @keywords fivethirtyeight, fte, matches
 #' @export
 #' @examples \dontrun{fte_matches()}
-#' @importFrom magrittr %>%
-#' @export %>%
+
 
 fte_matches <- function(start_season=2017,end_season=2020){
   matches <- readr::read_csv("https://projects.fivethirtyeight.com/soccer-api/club/spi_matches.csv")

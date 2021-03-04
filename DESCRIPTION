@@ -22,9 +22,9 @@ Imports:
     stringr,
     tidyr,
     readr,
-    purrr,
     forcats,
-    magrittr
+    magrittr,
+    purrr
 License: use_mit_license()
 Encoding: UTF-8
 LazyData: true

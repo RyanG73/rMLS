@@ -14,6 +14,7 @@ This function allows me to test setup
 }
 \examples{
 \dontrun{fte_rankings()}
+fte_rankings()
 }
 \keyword{fivethirtyeight,}
 \keyword{fte,}

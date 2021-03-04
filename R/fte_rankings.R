@@ -6,7 +6,7 @@
 #' @export
 #' @examples \dontrun{fte_rankings()}
 #' @importFrom magrittr %>%
-#' @export
+#' @export %>%
 
 fte_rankings <- function(){
   rankings <- readr::read_csv("https://projects.fivethirtyeight.com/soccer-api/club/spi_global_rankings.csv")

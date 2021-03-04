@@ -1,0 +1,15 @@
+library(tidyverse)
+
+designated_players <- read_csv("~/rProjects/Soccer/designated_players.csv")
+homegrown <- read_csv("~/rProjects/Soccer/homegrown.csv")
+team_info <- read_csv("~/rProjects/Soccer/team_info.csv")
+historical_odds <- read_csv("~/rProjects/Soccer/MLS_odds.csv")
+salaries <- read_csv("~/rProjects/Soccer/MLS_Salaries.csv")
+draft <- read_csv("~/rProjects/Soccer/draft_complete.csv")
+
+save(designated_players, file="data/designated_players.RData")
+save(homegrown, file="data/homegrown.RData")
+save(team_info, file="data/team_info.RData")
+save(historical_odds, file="data/historical_odds.RData")
+save(salaries, file="data/salaries.RData")
+save(draft, file="data/draft.RData")

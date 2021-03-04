@@ -1,0 +1,3 @@
+Sys.setenv(RETICULATE_PYTHON = "/opt/anaconda3/envs/python/bin/python")
+library(reticulate)
+

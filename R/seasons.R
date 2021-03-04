@@ -29,3 +29,4 @@ all2$value2 <- NULL
 seasons <- cbind(df,all2)
 seasons[seasons=="Major-League-Soccer-Stats"]<-NA
 save(seasons, file="data/seasons.RData")
+#test

@@ -1,0 +1,32 @@
+#' A dataset of seasons
+#'
+#' This file creates a base dataset for all MLS seasons
+#' @param
+#' @keywords seasons
+#' @export
+#' @usage data(seasons)
+#' @docType data
+
+URL <- paste0("https://fbref.com/en/comps/22/history/Major-League-Soccer-Seasons")
+html_doc <- URL %>% xml2::read_html()
+table <- html_doc %>% rvest::html_nodes("table")
+table1 <- table %>% rvest::html_table()
+df <- as.data.frame(table1)
+
+all <- rvest::html_attr(rvest::html_nodes(html_doc , "a"), "href")
+all <- tibble::as_tibble(all)
+
+all2 <- all %>%
+  dplyr::filter(stringr::str_detect(value, 'Major-League-Soccer-Stats'))
+all2 <- all2 %>% dplyr::distinct() %>%
+  dplyr::mutate(value2 = stringr::str_replace_all(value, "/en/comps/22/", "")) %>%
+  dplyr::mutate(season_id = stringr::str_extract(value2, "[^/]+")) %>%
+  suppressWarnings(dplyr::mutate(season_id = as.integer(season_id))) %>%
+  dplyr::rename(c("link" = "value")) %>%
+  dplyr::mutate(full_link = paste0('https://fbref.com',link))
+all2$value2 <- NULL
+
+seasons <- cbind(df,all2)
+seasons[seasons=="Major-League-Soccer-Stats"]<-NA
+save(seasons, file="data/seasons.RData")
+#test

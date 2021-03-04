@@ -1,0 +1,37 @@
+Package: rMLS
+Title: Acquire and Analyze Major League Soccer Data
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Ryan",
+           family = "Gerda",
+           role = c("aut", "cre"),
+           email = "ryangerda@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Provides numerous functions for acquiring and analyzing major 
+    league soccer data. Data is acquired from various online resources and is 
+    mold into a tidy format to analyze in R. 
+Maintainer: Ryan Gerda <ryangerda@gmail.com>
+Depends:
+    R (>= 3.2.0)
+Imports:
+    dplyr,
+    ggplot2,
+    xml2,
+    rvest,
+    tibble,
+    stringr,
+    tidyr,
+    readr,
+    purrr,
+    forcats,
+    magrittr
+License: use_mit_license()
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+LazyData: true

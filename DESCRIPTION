@@ -23,7 +23,8 @@ Imports:
     tidyr,
     readr,
     purrr,
-    forcats
+    forcats,
+    magrittr
 License: use_mit_license()
 Encoding: UTF-8
 LazyData: true

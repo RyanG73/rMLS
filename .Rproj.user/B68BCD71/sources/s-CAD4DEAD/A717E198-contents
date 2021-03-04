@@ -1,11 +1,11 @@
-#' A dataset of seasons
-#'
-#' This file creates a base dataset for all MLS seasons
-#' @param seasons, calls all MLS seasons
-#' @keywords seasons
-#' @export
-#' @usage data(seasons)
-#' @docType data
+# A dataset of seasons
+#
+# This file creates a base dataset for all MLS seasons
+# @param seasons, calls all MLS seasons
+# @keywords seasons
+# @export
+# @usage data(seasons)
+# @docType data
 
 URL <- paste0("https://fbref.com/en/comps/22/history/Major-League-Soccer-Seasons")
 html_doc <- URL %>% xml2::read_html()

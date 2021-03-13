@@ -8,6 +8,14 @@
 #' @examples \dontrun{playerid_lookup()}
 #' playerid_lookup()
 
-playerid_lookup <- function(){
-  print('a')
+playerid_lookup <- function(id=NULL,name=NULL){
+    if (length(id) > 0) {
+      players <- rMLS::players %>%
+        dplyr::filter(player_id == id)
+    return(players)
+    } else {
+      players <- rMLS::players %>%
+        dplyr::filter(grepl(as.character(name), player_name))
+    return(players)
+    }
 }

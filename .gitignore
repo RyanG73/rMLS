@@ -1,6 +1,7 @@
 R/seasons.R
 R/tidy_historical_odds.R
 R/tidy_salaries.R
+R/tidy_playertable.R
 R/tidy_homegrown.R
 R/tidy_designated_players.R
 man/URL.Rd

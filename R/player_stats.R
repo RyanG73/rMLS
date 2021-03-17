@@ -183,5 +183,6 @@ player_stats <- function(id=NULL){
   suppressWarnings({final[7:181] <- sapply(final[7:181],as.numeric)})
   final$country <- substr(final$country, nchar(final$country) - (3 - 1), nchar(final$country))
   final$league <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",final$league)
+  stringr::str_trim(final$league, side = c("both"))
   return(final)
 }

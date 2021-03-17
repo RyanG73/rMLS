@@ -3,6 +3,7 @@
 export("%>%")
 export(fte_matches)
 export(fte_rankings)
+export(player_stats)
 export(playerid_lookup)
 export(tester)
 importFrom(magrittr,"%>%")

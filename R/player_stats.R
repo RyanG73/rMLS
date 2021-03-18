@@ -1,7 +1,7 @@
 #' A function to find individual player statistics
 #'
 #' This function allows me to test setup
-#' @param player_stats,
+#' @param player_stats, no defaults
 #' @keywords player, stats, statistics, player_stats
 #' @importFrom magrittr "%>%"
 #' @export

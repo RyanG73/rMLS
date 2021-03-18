@@ -6,6 +6,9 @@
 \usage{
 player_stats(id = NULL)
 }
+\arguments{
+\item{player_stats, }{no defaults}
+}
 \description{
 This function allows me to test setup
 }

@@ -4,7 +4,7 @@
 \alias{rosters}
 \title{A function to find fixture results}
 \usage{
-rosters(start_season = 1996, end_season = 2021)
+rosters(start_season = 1996, end_season = 2020)
 }
 \arguments{
 \item{rosters, }{defaults are start=1996 and end=2021}

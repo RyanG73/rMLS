@@ -7,15 +7,18 @@
 #' @examples \dontrun{rosters()}
 #' rosters()
 
-rosters <- function(start_season=1996,end_season=2020){
+rosters <- function(start_season=1996,end_season=2020,teamid=NULL){
   total <- tibble::tibble()
   team_table <- rMLS::team_info %>% filter(team_est_year <= 2020)
   team_table$team_est_year <- ifelse(team_table$team_est_year < start_season,start_season,team_table$team_est_year)
+  if (!is.null(teamid)) {
+    team_table <- team_table %>% filter(team_id == teamid)
+  }
   for(i in 1:nrow(team_table)){
     id <- team_table[[i,3]]
     team <- team_table[[i,2]]
     start_season <- team_table[[i,17]]
-    print(paste(team))
+    print(paste("Gathering results for",team))
     for(s in start_season:end_season){
       URL <- paste0("https://fbref.com/en/squads/",id,"/",s,"/")
       html_doc <- URL %>% xml2::read_html()
@@ -44,10 +47,8 @@ rosters <- function(start_season=1996,end_season=2020){
       output$season <- s
       output$squad <- team
       total <- dplyr::bind_rows(total,output)
-      closeAllConnections()
       Sys.sleep(1)
     }
   }
   return(total)
-  closeAllConnections()
 }

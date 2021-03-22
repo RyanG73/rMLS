@@ -9,7 +9,7 @@
 
 rosters <- function(start_season=1996,end_season=2020,teamid=NULL){
   total <- tibble::tibble()
-  team_table <- rMLS::team_info %>% filter(team_est_year <= 2020)
+  team_table <- rMLS::team_info %>% dplyr::filter(team_est_year <= 2020)
   team_table$team_est_year <- ifelse(team_table$team_est_year < start_season,start_season,team_table$team_est_year)
   if (!is.null(teamid)) {
     team_table <- team_table %>% filter(team_id == teamid)

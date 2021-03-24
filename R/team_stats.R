@@ -14,7 +14,7 @@ team_stats <- function(start_season=1996,end_season=2020,teamid=NULL){
     dplyr::filter(Season >= start_season) %>%
     dplyr::filter(Season <= end_season)
   if (!is.null(teamid)) {
-    season_table <- season_table %>% dplr::filter(team_id == teamid)
+    season_table <- season_table %>% dplyr::filter(team_id == teamid)
   }
   for(i in 1:nrow(season_table)){
     id <- season_table[[i,7]]

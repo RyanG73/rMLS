@@ -36,6 +36,15 @@ team_stats(start_season = 2020, end_season = 2020,team_name="Columbus Crew SC")
 ```
 fixtures(start_season = 2017,end_season = 2020)
 ```
+
+## Rosters
+- The rosters() function provides the roster for every team in Major League Soccer for the given years designated in the function.  
+- Included is the player name and player id for each individual who played any amount to appear in the box score. 
+- Example: the following line will return all MLS rosters for the 2020 season. 
+```
+rosters(start_season = 2020,end_season = 2020)
+```
+
 ## Fivethirtyeight predictions 
   - Fivethirtyeight provides a basic elo model which defines playoff odds, matchup odds, and global club rankings. These function import data specifically for MLS.  
 ```

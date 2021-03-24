@@ -1,6 +1,7 @@
 # rMLS
-### Provides numerous functions for acquiring and analyzing major league soccer data. Data is acquired from various online resources and is mold into a tidy format to analyze in R.  
-Current Status: beta testing and development  
+### Provides numerous functions for acquiring and analyzing major league soccer data. Data is acquired from various online resources and is molded into a tidy format to analyze in R.  
+
+### Current Status: beta testing and development  
 
 
 # Installation  
@@ -11,20 +12,47 @@ install_github("ryang73/rMLS")
 
 
 # Overview  
-There are many great soccer packages available for both R and Python, but what I discovered as I dug in was a major gap in what was available specifically for MLS. Most packages only support the top European leagues. While I initially wanted to mirror the availability of statistics, I quickly realized that Major League Soccer has so many more nuances to offer in a data package. Below is an outline of just a few, while full documentation can be found in the ReadMe's of each function.  
+There are many great soccer packages available for both R and Python. What I discovered as I dug in though was a major gap in what was available specifically for MLS. Most packages only support the top European leagues. I initially wanted to mirror the availability of statistics, I quickly realized that Major League Soccer has so many more nuances to offer in a data package. Below is an outline of just a few, while full documentation can be found in each function.
 
 ## Player Stats  
-- player 
+- The player_stats() function provides up to 181 attributes, ranging from traditional statistics to modern/advanced ones such as expected contributions. 
+- The function takes a playerID, as designated by the fbref.com system. 
+- Example: the following line will return a tibble containing 12 observations and 181 variables (as of spring 2021) of MLS legend, Justin Meram. 
+```
+player_stats("ae34c71d")
+```
 
 ## Team Stats  
-- Team Information  
-- Historical Seasons
+- The team_stats() function provides up to 217 variables aggregated at the team level for each individual season from 1996 to the present. 
+- Users are able to choose specific "start" or "end" seasons, and enter a team's unique id (found in the team_info table) to gather as much or little data as needed.
+- Example: the following line will return a tibble containing 26 observations (one for each MLS team) and 217 variables aggregated for the 2020 MLS season. 
+```
+team_stats(start_season = 2020, end_season = 2020)
+```
 
 ## Fixtures  
+- The fixtures() function provides 16 variables for every game played in MLS in the designated season window. 
+- Example: the following line will return a tibble containing the results of every MLS game from 2017-2020. 
+```
+fixtures(start_season = 2017,end_season = 2020)
+```
+## Fivethirtyeight predictions 
+  - Fivethirtyeight provides a basic elo model which defines playoff odds, matchup odds, and global club rankings. These function import data specifically for MLS.  
+```
+fte_matches(start_season=2017,end_season=2020)  
+fte_rankings()
+```
 
 
+
+
+
+
+# Stale Datasets  
+### The following are datasets which are not updated in real time, but contains relevant information to Major League Soccer currently and historically. 
 
 ## Team Infomation  
+### rMLS::team_info
 - Basic team information meant for mapping & charting:  
   - Team: ID, Name, Abbreviation, 
   - Location: City, State, Stadium  
@@ -32,38 +60,34 @@ There are many great soccer packages available for both R and Python, but what I
   - Social: Twitter
 
 ## Odds and Probabilities  
+### rMLS::historical_odds
 - Historical Odds (Static)
   - 2012-2020
   - All matchup results and market odds going back
 - Current Odds  
-  - *In DEVELOPMENT* 
-- Fivethirtyeight predictions 
-  - Fivethirtyeight provides a basic elo model which defines playoff odds, matchup odds, and global club rankings. This function imports this data specifically for MLS.  
-```
-fte_matches(start_season=2017,end_season=2020)  
-fte_rankings()
-```
+  - *In DEVELOPMENT*   
+
 
 ## MLS Specific Rules  
-### Designated Players  
+### rMLS::designated_players
   - The Designated Player Rule, nicknamed the Beckham Rule, allows Major League Soccer franchises to sign up to three players that would be considered outside their salary cap either by offering the player higher wages or by paying a transfer fee for the player.  
   - https://en.wikipedia.org/wiki/Designated_Player_Rule  
   - *action item*  
     - add player IDs  
     
-### Homegrown Players  
-  - The Homegrown Player Rule is a Major League Soccer program that allows MLS teams to sign local players from their own development academies directly to MLS first team rosters.   
+### rMLS::homegrown_players  
+  - The Homegrown Player Rule is a Major League Soccer program that allows MLS teams to sign local players from their own development academies directly to MLS first team rosters while avoiding the full amount of the contract against the salary cap.   
   - https://en.wikipedia.org/wiki/Homegrown_Player_Rule_(Major_League_Soccer)  
   - *action item*  
     - add player IDs  
     
-### Salaries (Static)  
+### rMLS::salaries
   - The Major League Soccer Players Association has released player salary data annually from 2007 to 2019.  
   - In 2020, the union did not release salary data due to the COVID-19 pandemic.  
   - *Action Items*  
     - add player IDs 
   
-### MLS Superdraft (Static)  
+### rMLS::draft 
   - years: 2000 - 2020
   - Player, Pick Position. 
   - *Action Items*  
@@ -79,6 +103,3 @@ fte_rankings()
 
 
 # Further Documentation  
-
-
-#

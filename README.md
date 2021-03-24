@@ -25,9 +25,9 @@ player_stats("ae34c71d")
 ## Team Stats  
 - The team_stats() function provides up to 217 variables aggregated at the team level for each individual season from 1996 to the present. 
 - Users are able to choose specific "start" or "end" seasons, and enter a team's unique id (found in the team_info table) to gather as much or little data as needed.
-- Example: the following line will return a tibble containing 26 observations (one for each MLS team) and 217 variables aggregated for the 2020 MLS season. 
+- Example: the following line will return a tibble containing 217 variables aggregated for the 2020 MLS Cup Champion Columbus Crew. 
 ```
-team_stats(start_season = 2020, end_season = 2020)
+team_stats(start_season = 2020, end_season = 2020,team_name="Columbus Crew SC")
 ```
 
 ## Fixtures  

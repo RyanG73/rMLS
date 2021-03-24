@@ -7,15 +7,12 @@
 #' @examples \dontrun{team_stats()}
 #' team_stats()
 
-team_stats <- function(start_season=1996,end_season=2020,teamid=NULL){
+team_stats <- function(start_season=1996,end_season=2020,team_name=NULL){
   total <- tibble::tibble()
   season_table <- rMLS::seasons
   season_table <- season_table %>% dplyr::filter(Season != 2021) %>%
     dplyr::filter(Season >= start_season) %>%
     dplyr::filter(Season <= end_season)
-  if (!is.null(teamid)) {
-    season_table <- season_table %>% dplyr::filter(team_id == teamid)
-  }
   for(i in 1:nrow(season_table)){
     id <- season_table[[i,7]]
     season <- season_table[[i,1]]
@@ -326,5 +323,8 @@ team_stats <- function(start_season=1996,end_season=2020,teamid=NULL){
                 "New York Red Bulls","FC Dallas","Sporting Kansas City")
   suppressWarnings({total$squad <- plyr::mapvalues(total$squad, oldValue, newValue)})
   total$squad <- ifelse((total$squad == "Inter Miami CF") & (total$season < 2019),"defunct Miami",total$squad)
+  if (!is.null(team_name)) {
+    total <- total %>% dplyr::filter(squad == team_name)
+  }
   return(total)
 }

@@ -4,7 +4,7 @@
 \alias{box_scores}
 \title{A function to find box scores}
 \usage{
-box_scores()
+box_scores(data = NULL, row = 1)
 }
 \arguments{
 \item{box_scores, }{no defaults}

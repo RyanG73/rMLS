@@ -18,8 +18,7 @@ fixtures <- function(start_season=1996,end_season=2021){
     else {table <- html_doc %>% rvest::html_nodes("#sched_all")}
     table1 <- table %>% rvest::html_table()
     df <- as.data.frame(table1)
-    total <- plyr::rbind.fill(total,df)
-    total <- total %>%
+    df <- df %>%
       dplyr::filter(Day != "Day") %>%
       dplyr::filter(Date != "")
     pg <- xml2::read_html(URL)
@@ -32,7 +31,8 @@ fixtures <- function(start_season=1996,end_season=2021){
     all <- all %>% mutate(game_id = substr(value,13,20))
     all <- all %>% mutate(game_url = paste0('https://fbref.com/',value))
     all$value <- NULL
-    total <- cbind(total,all)
+    df <- cbind(df,all)
+    total <- plyr::rbind.fill(total,df)
   }
   total$Date <- lubridate::ymd(total$Date)
   total$Score <- gsub("\\s*\\([^\\)]+\\)","",as.character(total$Score))

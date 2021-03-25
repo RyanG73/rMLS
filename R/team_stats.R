@@ -311,17 +311,22 @@ team_stats <- function(start_season=1996,end_season=2020,team_name=NULL){
     total <- dplyr::bind_rows(total,final)
     Sys.sleep(1)
   }
-  oldValue <- c("Atlanta","Chicago","Colorado","Columbus","Houston","Miami","Minnesota"
-                ,"Montreal","Nashville","New England","NY Red Bulls","NYCFC",
-                "Orlando City","Philadelphia","Portland","San Jose","Seattle","Sporting KC",
-                "Vancouver","KC Wizards","MetroStars","Dallas","KC Wiz")
-  newValue <- c("Atlanta United FC","Chicago Fire FC","Colorado Rapids","Columbus Crew SC",
-                "Houston Dynamo","Inter Miami CF","Minnesota United FC","CF Montreal","Nashville SC",
-                "New England Revolution","New York Red Bulls","New York City FC",
-                "Orlando City SC","Philadelphia Union","Portland Timbers","San Jose Earthquakes",
-                "Seattle Sounders FC","Sporting Kansas City","Vancouver Whitecaps FC","Sporting Kansas City",
-                "New York Red Bulls","FC Dallas","Sporting Kansas City")
-  suppressWarnings({total$squad <- plyr::mapvalues(total$squad, oldValue, newValue)})
+  total$squad <- dplyr::recode(total$squad, "Houston" = "Houston Dynamo","Seattle"="Seattle Sounders FC",
+                       "CF Montréal"="CF Montreal","Orlando City"="Orlando City SC",
+                       "Los Angeles FC"="Los Angeles FC","FC Dallas"="FC Dallas",
+                       "NY Red Bulls"="New York Red Bulls","D.C. United"="D.C. United",
+                       "Nashville"="Nashville SC","Chicago"="Chicago Fire FC",
+                       "Miami"="Inter Miami CF","Columbus"="Columbus Crew SC" ,
+                       "Vancouver"="Vancouver Whitecaps FC","Sporting KC"="Sporting Kansas City",
+                       "NYCFC"="New York City FC","Toronto FC"="Toronto FC","San Jose"="San Jose Earthquakes",
+                       "Minnesota"="Minnesota United FC","Atlanta"="Atlanta United FC",
+                       "New England"="New England Revolution","Philadelphia"="Philadelphia Union",
+                       "Colorado"="Colorado Rapids","Portland"="Portland Timbers",
+                       "LA Galaxy"="LA Galaxy","Real Salt Lake"="Real Salt Lake",
+                       "FC Cincinnati"="FC Cincinnati","Austin FC"="Austin FC",
+                       "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
+                       "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
+                       "KC Wiz"="Sporting Kansas City")
   total$squad <- ifelse((total$squad == "Inter Miami CF") & (total$season < 2019),"defunct Miami",total$squad)
   if (!is.null(team_name)) {
     total <- total %>% dplyr::filter(squad == team_name)

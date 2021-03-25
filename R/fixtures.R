@@ -8,7 +8,8 @@
 #' fixtures()
 
 fixtures <- function(start_season=1996,end_season=2021){
-  sea <- rMLS::seasons$season_id
+  season <- rMLS::seasons %>% filter(Season >= start_season) %>% filter(Season <= end_season)
+  sea <- season$season_id
   sea[is.na(sea)] <- ""
   total <- tibble::tibble()
   for(s in sea){
@@ -31,7 +32,8 @@ fixtures <- function(start_season=1996,end_season=2021){
     all <- all %>% mutate(game_id = substr(value,13,20))
     all <- all %>% mutate(game_url = paste0('https://fbref.com/',value))
     all$value <- NULL
-    df <- cbind(df,all)
+    if (nrow(all) < 1) {all <- data.frame(matrix(ncol=2,nrow=1, dimnames=list(NULL, names(all))))}
+    df <- dplyr::bind_cols(df,all)
     total <- plyr::rbind.fill(total,df)
   }
   total$Date <- lubridate::ymd(total$Date)
@@ -49,6 +51,38 @@ fixtures <- function(start_season=1996,end_season=2021){
     dplyr::filter(Date >= start) %>%
     dplyr::filter(Date <= end)
   closeAllConnections()
+  total$Home <- dplyr::recode(total$Home, "Houston" = "Houston Dynamo","Seattle"="Seattle Sounders FC",
+                              "CF Montréal"="CF Montreal","Orlando City"="Orlando City SC",
+                              "Los Angeles FC"="Los Angeles FC","FC Dallas"="FC Dallas",
+                              "NY Red Bulls"="New York Red Bulls","D.C. United"="D.C. United",
+                              "Nashville"="Nashville SC","Chicago"="Chicago Fire FC",
+                              "Miami"="Inter Miami CF","Columbus"="Columbus Crew SC" ,
+                              "Vancouver"="Vancouver Whitecaps FC","Sporting KC"="Sporting Kansas City",
+                              "NYCFC"="New York City FC","Toronto FC"="Toronto FC","San Jose"="San Jose Earthquakes",
+                              "Minnesota"="Minnesota United FC","Atlanta"="Atlanta United FC",
+                              "New England"="New England Revolution","Philadelphia"="Philadelphia Union",
+                              "Colorado"="Colorado Rapids","Portland"="Portland Timbers",
+                              "LA Galaxy"="LA Galaxy","Real Salt Lake"="Real Salt Lake",
+                              "FC Cincinnati"="FC Cincinnati","Austin FC"="Austin FC",
+                              "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
+                              "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
+                              "KC Wiz"="Sporting Kansas City")
+  total$Away <- dplyr::recode(total$Away, "Houston" = "Houston Dynamo","Seattle"="Seattle Sounders FC",
+                              "CF Montréal"="CF Montreal","Orlando City"="Orlando City SC",
+                              "Los Angeles FC"="Los Angeles FC","FC Dallas"="FC Dallas",
+                              "NY Red Bulls"="New York Red Bulls","D.C. United"="D.C. United",
+                              "Nashville"="Nashville SC","Chicago"="Chicago Fire FC",
+                              "Miami"="Inter Miami CF","Columbus"="Columbus Crew SC" ,
+                              "Vancouver"="Vancouver Whitecaps FC","Sporting KC"="Sporting Kansas City",
+                              "NYCFC"="New York City FC","Toronto FC"="Toronto FC","San Jose"="San Jose Earthquakes",
+                              "Minnesota"="Minnesota United FC","Atlanta"="Atlanta United FC",
+                              "New England"="New England Revolution","Philadelphia"="Philadelphia Union",
+                              "Colorado"="Colorado Rapids","Portland"="Portland Timbers",
+                              "LA Galaxy"="LA Galaxy","Real Salt Lake"="Real Salt Lake",
+                              "FC Cincinnati"="FC Cincinnati","Austin FC"="Austin FC",
+                              "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
+                              "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
+                              "KC Wiz"="Sporting Kansas City")
   total <- total %>% left_join(select(rMLS::team_info,team_name,team_id),by=c("Home" = "team_name"))
   total <- total %>% left_join(select(rMLS::team_info,team_name,team_id),by=c("Away" = "team_name"),suffix = c("","away"))
   total <- total %>% dplyr::rename(home_team_id = team_id,away_team_id = team_idaway)

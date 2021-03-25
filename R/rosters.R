@@ -8,6 +8,8 @@
 #' rosters()
 
 rosters <- function(start_season=1996,end_season=2020,teamid=NULL){
+  print("Depending on the number of teams/years, this function take a moment to run - we dont want to overload the fbref server!")
+  print("If you enjoy this content, please consider creating an fbref account to support them")
   total <- tibble::tibble()
   team_table <- rMLS::team_info %>% dplyr::filter(team_est_year <= 2020)
   team_table$team_est_year <- ifelse(team_table$team_est_year < start_season,start_season,team_table$team_est_year)
@@ -18,8 +20,6 @@ rosters <- function(start_season=1996,end_season=2020,teamid=NULL){
     id <- team_table[[i,3]]
     team <- team_table[[i,2]]
     start_season <- team_table[[i,17]]
-    print("Depending on the number of teams/years, this function take a moment to run - we dont want to overload the fbref server!")
-    print("If you enjoy this content, please consider creating an fbref account to support them")
     for(s in start_season:end_season){
       URL <- paste0("https://fbref.com/en/squads/",id,"/",s,"/")
       html_doc <- URL %>% xml2::read_html()

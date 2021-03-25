@@ -19,10 +19,21 @@ fixtures <- function(start_season=1996,end_season=2021){
     table1 <- table %>% rvest::html_table()
     df <- as.data.frame(table1)
     total <- plyr::rbind.fill(total,df)
+    total <- total %>%
+      dplyr::filter(Day != "Day") %>%
+      dplyr::filter(Date != "")
+    pg <- xml2::read_html(URL)
+    all <- rvest::html_attr(rvest::html_nodes(pg, "a"), "href")
+    all <- as_tibble(all)
+    all <- all %>%
+      filter(stringr::str_detect(value, '^/en/matches/')) %>%
+      filter(nchar(value) >= 25)
+    all <- distinct(all)
+    all <- all %>% mutate(game_id = substr(value,13,20))
+    all <- all %>% mutate(game_url = paste0('https://fbref.com/',value))
+    all$value <- NULL
+    total <- cbind(total,all)
   }
-  total <- total %>%
-    dplyr::filter(Day != "Day") %>%
-    dplyr::filter(Date != "")
   total$Date <- lubridate::ymd(total$Date)
   total$Score <- gsub("\\s*\\([^\\)]+\\)","",as.character(total$Score))
   total$Score <- stringr::str_trim(total$Score, side = c("both"))
@@ -38,5 +49,8 @@ fixtures <- function(start_season=1996,end_season=2021){
     dplyr::filter(Date >= start) %>%
     dplyr::filter(Date <= end)
   closeAllConnections()
+  total <- total %>% left_join(select(rMLS::team_info,team_name,team_id),by=c("Home" = "team_name"))
+  total <- total %>% left_join(select(rMLS::team_info,team_name,team_id),by=c("Away" = "team_name"),suffix = c("","away"))
+  total <- total %>% dplyr::rename(home_team_id = team_id,away_team_id = team_idaway)
   return(total)
 }

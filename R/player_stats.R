@@ -185,5 +185,7 @@ player_stats <- function(id=NULL){
   final$country <- substr(final$country, nchar(final$country) - (3 - 1), nchar(final$country))
   final$league <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",final$league)
   final$league <- stringr::str_trim(final$league, side = c("both"))
+  final$player_id <- id
+  final <- final %>% relocate(player_id, .before = "season")
   return(final)
 }

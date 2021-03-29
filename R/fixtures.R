@@ -8,7 +8,7 @@
 #' fixtures()
 
 fixtures <- function(start_season=1996,end_season=2021){
-  season <- rMLS::seasons %>% filter(Season >= start_season) %>% filter(Season <= end_season)
+  season <- rMLS::seasons %>% dplyr::filter(Season >= start_season) %>% dplyr::filter(Season <= end_season)
   sea <- season$season_id
   sea[is.na(sea)] <- ""
   total <- tibble::tibble()
@@ -26,8 +26,8 @@ fixtures <- function(start_season=1996,end_season=2021){
     all <- rvest::html_attr(rvest::html_nodes(pg, "a"), "href")
     all <- as_tibble(all)
     all <- all %>%
-      filter(stringr::str_detect(value, '^/en/matches/')) %>%
-      filter(nchar(value) >= 25)
+      dplyr::filter(stringr::str_detect(value, '^/en/matches/')) %>%
+      dplyr::filter(nchar(value) >= 25)
     all <- distinct(all)
     all <- all %>% mutate(game_id = substr(value,13,20))
     all <- all %>% mutate(game_url = paste0('https://fbref.com/',value))

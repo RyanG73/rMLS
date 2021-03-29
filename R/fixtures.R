@@ -44,6 +44,8 @@ fixtures <- function(start_season=1996,end_season=2021){
   total$Attendance <- sapply(total$Attendance, gsub, pattern=",", replacement="")
   suppressWarnings({total$Attendance <- sapply(total$Attendance,as.numeric)})
   total$Match.Report <- NULL
+  x <- c( "xG","xG.1")
+  total[x[!(x %in% colnames(total))]] = NA
   total <- total %>% dplyr::rename(home_xGoals = xG,away_xGoals = xG.1)
   start <- lubridate::ymd(start_season, truncated = 2L)
   end <- lubridate::ymd(end_season+1, truncated = 2L)
@@ -83,8 +85,8 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
                               "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
                               "KC Wiz"="Sporting Kansas City")
-  total <- total %>% left_join(select(rMLS::team_info,team_name,team_id),by=c("Home" = "team_name"))
-  total <- total %>% left_join(select(rMLS::team_info,team_name,team_id),by=c("Away" = "team_name"),suffix = c("","away"))
+  total <- total %>% dplyr::left_join(dplyr::select(rMLS::team_info,team_name,team_id),by=c("Home" = "team_name"))
+  total <- total %>% dplyr::left_join(dplyr::select(rMLS::team_info,team_name,team_id),by=c("Away" = "team_name"),suffix = c("","away"))
   total <- total %>% dplyr::rename(home_team_id = team_id,away_team_id = team_idaway)
   return(total)
 }

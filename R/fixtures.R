@@ -28,9 +28,9 @@ fixtures <- function(start_season=1996,end_season=2021){
     all <- all %>%
       dplyr::filter(stringr::str_detect(value, '^/en/matches/')) %>%
       dplyr::filter(nchar(value) >= 25)
-    all <- distinct(all)
-    all <- all %>% mutate(game_id = substr(value,13,20))
-    all <- all %>% mutate(game_url = paste0('https://fbref.com/',value))
+    all <- dplyr::distinct(all)
+    all <- all %>% dplyr::mutate(game_id = substr(value,13,20))
+    all <- all %>% dplyr::mutate(game_url = paste0('https://fbref.com/',value))
     all$value <- NULL
     if (nrow(all) < 1) {all <- data.frame(matrix(ncol=2,nrow=1, dimnames=list(NULL, names(all))))}
     df <- dplyr::bind_cols(df,all)

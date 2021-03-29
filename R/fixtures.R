@@ -24,7 +24,7 @@ fixtures <- function(start_season=1996,end_season=2021){
       dplyr::filter(Date != "")
     pg <- xml2::read_html(URL)
     all <- rvest::html_attr(rvest::html_nodes(pg, "a"), "href")
-    all <- as_tibble(all)
+    all <- tibble::as_tibble(all)
     all <- all %>%
       dplyr::filter(stringr::str_detect(value, '^/en/matches/')) %>%
       dplyr::filter(nchar(value) >= 25)

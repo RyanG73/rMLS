@@ -36,8 +36,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$number <- as.integer(df$number)})
   df <- df %>% dplyr::filter(!is.na(number))
+  col.num <- which(colnames(df) %in% names(one))
+  df <- df[sort(c(col.num))]
   one <- plyr::rbind.fill(one,df)
-  one$team_id <- home_id
+  if (nrow(one)>0) {one$team_id <- home_id} else {one$team_id  <- character()}
   # 2 "stats_529ba333_passing"
   two <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
            "VarMin", "TotalCmp", "TotalAtt", "TotalTwoCmppct", "TotalTotDist",
@@ -58,9 +60,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(two))
+  df <- df[sort(c(col.num))]
   two <- plyr::rbind.fill(two,df)
-  two$team_id <- home_id
-
+  if (nrow(two)>0) {two$team_id <- home_id} else {two$team_id  <- character()}
   # 3 "stats_529ba333_passing_types"
   three <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
              "VarMin", "VarAtt", "PassTypesLive", "PassTypesDead", "PassTypesFK",
@@ -83,8 +86,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(three))
+  df <- df[sort(c(col.num))]
   three <- plyr::rbind.fill(three,df)
-  three$team_id <- home_id
+  if (nrow(three)>0) {three$team_id <- home_id} else {three$team_id  <- character()}
 
   # 4 "stats_529ba333_defense"
   four <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
@@ -108,8 +113,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(four))
+  df <- df[sort(c(col.num))]
   four <- plyr::rbind.fill(four,df)
-  four$team_id <- home_id
+  if (nrow(four)>0) {four$team_id <- home_id} else {four$team_id  <- character()}
 
   # 5 "stats_529ba333_possession"
   five <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
@@ -133,8 +140,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(five))
+  df <- df[sort(c(col.num))]
   five <- plyr::rbind.fill(five,df)
-  five$team_id <- home_id
+  if (nrow(five)>0) {five$team_id <- home_id} else {five$team_id  <- character()}
 
   # 6 "stats_529ba333_misc"
   six <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
@@ -157,8 +166,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(six))
+  df <- df[sort(c(col.num))]
   six <- plyr::rbind.fill(six,df)
-  six$team_id <- home_id
+  if (nrow(six)>0) {six$team_id <- home_id} else {six$team_id  <- character()}
 
   # 1 "#stats_",home_id,"_summary"
   one2 <- c("VarPlayer", "number", "VarNation", "VarPos", "VarAge", "VarMin",
@@ -183,8 +194,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$number <- as.integer(df$number)})
   df <- df %>% dplyr::filter(!is.na(number))
+  col.num <- which(colnames(df) %in% names(one2))
+  df <- df[sort(c(col.num))]
   one2 <- plyr::rbind.fill(one2,df)
-  one2$team_id <- away_id
+  if (nrow(one2)>0) {one2$team_id <- away_id} else {one2$team_id  <- character()}
   # 2 "stats_529ba333_passing"
   two2 <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
            "VarMin", "TotalCmp", "TotalAtt", "TotalTwoCmppct", "TotalTotDist",
@@ -205,8 +218,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(two2))
+  df <- df[sort(c(col.num))]
   two2 <- plyr::rbind.fill(two2,df)
-  two2$team_id <- away_id
+  if (nrow(two2)>0) {two2$team_id <- away_id} else {two2$team_id  <- character()}
 
   # 3 "stats_529ba333_passing_types"
   three2 <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
@@ -230,8 +245,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(three2))
+  df <- df[sort(c(col.num))]
   three2 <- plyr::rbind.fill(three2,df)
-  three2$team_id <- away_id
+  if (nrow(three2)>0) {three2$team_id <- away_id} else {three2$team_id  <- character()}
 
   # 4 "stats_529ba333_defense"
   four2 <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
@@ -255,8 +272,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(four2))
+  df <- df[sort(c(col.num))]
   four2 <- plyr::rbind.fill(four2,df)
-  four2$team_id <- away_id
+  if (nrow(four2)>0) {four2$team_id <- away_id} else {four2$team_id  <- character()}
 
   # 5 "stats_529ba333_possession"
   five2 <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
@@ -280,8 +299,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(five2))
+  df <- df[sort(c(col.num))]
   five2 <- plyr::rbind.fill(five2,df)
-  five2$team_id <- away_id
+  if (nrow(five2)>0) {five2$team_id <- away_id} else {five2$team_id  <- character()}
 
   # 6 "stats_529ba333_misc"
   six2 <- c("VarPlayer", "Varnumber", "VarNation", "VarPos", "VarAge",
@@ -304,8 +325,10 @@ box_scores <- function(data=NULL,row=1){
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
   df <- df %>% dplyr::filter(!is.na(Varnumber))
+  col.num <- which(colnames(df) %in% names(six2))
+  df <- df[sort(c(col.num))]
   six2 <- plyr::rbind.fill(six2,df)
-  six2$team_id <- away_id
+  if (nrow(six2)>0) {six2$team_id <- away_id} else {six2$team_id  <- character()}
 
   final <- merge(one, two, by =0, all = TRUE, suffixes = c("tbl1","tbl2"),sort=FALSE)
   final$Row.names <- NULL
@@ -417,15 +440,15 @@ box_scores <- function(data=NULL,row=1){
   final <- dplyr::bind_rows(final,final2,.id=NULL)
   final$country <- substr(final$country, nchar(final$country) - (3 - 1), nchar(final$country))
   final$age <- substr(final$age,1,2)
-  final <- final %>% relocate(team_id, .before = 2)
+  final <- final %>% dplyr::relocate(team_id, .before = 2)
   final$game_id <- game_id
-  final <- final %>% relocate(game_id, .before = 2)
+  final <- final %>% dplyr::relocate(game_id, .before = 2)
   final[7:124]<- sapply(final[7:124], gsub, pattern=",", replacement="")
   suppressWarnings({final[7:124] <- sapply(final[7:124],as.numeric)})
   final <- final %>% dplyr::relocate(team_id, .before = 2)
-  final <- final %>% inner_join(select(rMLS::team_info,team_id,team_name),r,by='team_id')
+  final <- final %>% dplyr::inner_join(dplyr::select(rMLS::team_info,team_id,team_name),r,by='team_id')
   final <- final %>% dplyr::relocate(team_name, .before = "team_id")
-  final <- dplyr::inner_join(select(data,game_id,Date,Round),final,by='game_id')
+  final <- dplyr::inner_join(dplyr::select(data,game_id,Date,Round),final,by='game_id')
   final <- final %>% dplyr::relocate(Date, .before = "number")
   final <- final %>% dplyr::relocate(Round, .before = "number")
   return(final)

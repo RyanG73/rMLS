@@ -35,7 +35,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$number <- as.integer(df$number)})
-  df <- df %>% dplyr::filter(!is.na(number))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(one))
   df <- df[sort(c(col.num))]
   one <- plyr::rbind.fill(one,df)
@@ -59,7 +60,9 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(VarPos != "")
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(two))
   df <- df[sort(c(col.num))]
   two <- plyr::rbind.fill(two,df)
@@ -85,7 +88,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(three))
   df <- df[sort(c(col.num))]
   three <- plyr::rbind.fill(three,df)
@@ -112,7 +116,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(four))
   df <- df[sort(c(col.num))]
   four <- plyr::rbind.fill(four,df)
@@ -139,7 +144,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(five))
   df <- df[sort(c(col.num))]
   five <- plyr::rbind.fill(five,df)
@@ -165,7 +171,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(six))
   df <- df[sort(c(col.num))]
   six <- plyr::rbind.fill(six,df)
@@ -193,7 +200,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$number <- as.integer(df$number)})
-  df <- df %>% dplyr::filter(!is.na(number))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(one2))
   df <- df[sort(c(col.num))]
   one2 <- plyr::rbind.fill(one2,df)
@@ -217,7 +225,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(two2))
   df <- df[sort(c(col.num))]
   two2 <- plyr::rbind.fill(two2,df)
@@ -244,7 +253,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(three2))
   df <- df[sort(c(col.num))]
   three2 <- plyr::rbind.fill(three2,df)
@@ -271,7 +281,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(four2))
   df <- df[sort(c(col.num))]
   four2 <- plyr::rbind.fill(four2,df)
@@ -298,7 +309,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(five2))
   df <- df[sort(c(col.num))]
   five2 <- plyr::rbind.fill(five2,df)
@@ -324,7 +336,8 @@ box_scores <- function(data=NULL,row=1){
   names(df) <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",names(df))
   df <- df[-1,]
   suppressWarnings({df$Varnumber <- as.integer(df$Varnumber)})
-  df <- df %>% dplyr::filter(!is.na(Varnumber))
+  if (nrow(df)>0) {df <- df %>% dplyr::filter(VarPos != "")}
+  #df <- df %>% dplyr::filter(!is.na(number))
   col.num <- which(colnames(df) %in% names(six2))
   df <- df[sort(c(col.num))]
   six2 <- plyr::rbind.fill(six2,df)

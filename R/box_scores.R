@@ -454,7 +454,7 @@ box_scores <- function(data=NULL,row=1){
   final$country <- substr(final$country, nchar(final$country) - (3 - 1), nchar(final$country))
   final$age <- substr(final$age,1,2)
   final <- final %>% dplyr::relocate(team_id, .before = 2)
-  final$game_id <- game_id
+  if (nrow(final)>0) {final$game_id <- game_id} else {final$game_id  <- character()}
   final <- final %>% dplyr::relocate(game_id, .before = 2)
   final[7:124]<- sapply(final[7:124], gsub, pattern=",", replacement="")
   suppressWarnings({final[7:124] <- sapply(final[7:124],as.numeric)})

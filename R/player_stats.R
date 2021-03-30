@@ -177,11 +177,11 @@ player_stats <- function(id=NULL){
   names(final) <- final_names
   final <-  final[!duplicated(colnames(final))]
   final$matches <- NULL
-  final[[3]] <- sapply(final[[3]],as.numeric)
+  final[[2]] <- sapply(final[[2]],as.numeric)
   final$plus_minus <- sapply(final$plus_minus,as.numeric)
   final$league_rank <- gsub("[^0-9.-]", "", final$league_rank)
-  final[7:181]<- sapply(final[7:181], gsub, pattern=",", replacement="")
-  suppressWarnings({final[7:181] <- sapply(final[7:181],as.numeric)})
+  final[6:180]<- sapply(final[6:180], gsub, pattern=",", replacement="")
+  suppressWarnings({final[6:180] <- sapply(final[6:180],as.numeric)})
   final$country <- substr(final$country, nchar(final$country) - (3 - 1), nchar(final$country))
   final$league <- gsub("[[:punct:]]|[[:digit:]]|^http:\\/\\/.*|^https:\\/\\/.*","",final$league)
   final$league <- stringr::str_trim(final$league, side = c("both"))

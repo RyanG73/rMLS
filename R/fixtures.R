@@ -85,8 +85,8 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
                               "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
                               "KC Wiz"="Sporting Kansas City")
-  total$Home <- ifelse((Date > '2019-01-01')&(total$Home == 'Inter Miami CF'),'Inter Miami CF','Miami Fusion')
-  total$Away <- ifelse((Date > '2019-01-01')&(total$Away == 'Inter Miami CF'),'Inter Miami CF','Miami Fusion')
+  total$Home <- ifelse((total$Date > '2019-01-01')&(total$Home == 'Inter Miami CF'),'Inter Miami CF','Miami Fusion')
+  total$Away <- ifelse((total$Date > '2019-01-01')&(total$Away == 'Inter Miami CF'),'Inter Miami CF','Miami Fusion')
   total <- total %>% dplyr::left_join(dplyr::select(rMLS::team_info,team_name,team_id),by=c("Home" = "team_name"))
   total <- total %>% dplyr::left_join(dplyr::select(rMLS::team_info,team_name,team_id),by=c("Away" = "team_name"),suffix = c("","away"))
   total <- total %>% dplyr::rename(home_team_id = team_id,away_team_id = team_idaway)

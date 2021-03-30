@@ -37,6 +37,24 @@ team_stats(start_season = 2020, end_season = 2020,team_name="Columbus Crew SC")
 fixtures(start_season = 2017,end_season = 2020)
 ```
 
+## Box Scores 
+- The box_scores() function provides player level data for an individual game. 
+- This function is builds on top of the fxtures() function by taking the resulting tibble from fixtures() as the argument. It will then pull the necessary team and game data to find the full box score for your game. 
+- If you pass a fixtures dataset with more than one game, it will only return the box score for the first game in the dataset. However, you are able to easily scrape and concatenate the box scores of many fixtures via the following code. 
+```
+# one fixture
+fix <- rMLS::fixtures()
+box_score <- rMLS::box_scores(fix)
+
+# many fixtures 
+fix <- rMLS::fixtures(start_season=2015,end_season=2015)
+box <- tibble::tibble()
+for(i in 1:nrow(fix)){
+  box_one_row <- rMLS::box_scores(fix,row=i)
+  box <- dplyr::bind_rows(box,box_one_row)
+}
+```
+
 ## Rosters
 - The rosters() function provides the roster for every team in Major League Soccer for the given years designated in the function.  
 - Included is the player name and player id for each individual who played any amount to appear in the box score. 

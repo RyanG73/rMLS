@@ -177,8 +177,10 @@ player_stats <- function(id=NULL){
   names(final) <- final_names
   final <-  final[!duplicated(colnames(final))]
   final$matches <- NULL
-  if (nrow(final)>0) {final$age <- sapply(final$age,as.numeric)}
-  if (nrow(final)>0) {final$plus_minus <- sapply(final$plus_minus,as.numeric)}
+  final$age <- as.numeric(final$age)
+  final$plus_minus <- as.numeric(final$plus_minus)
+  #if (nrow(final)>0) {final$age <- sapply(final$age,as.numeric)}
+  #if (nrow(final)>0) {final$plus_minus <- sapply(final$plus_minus,as.numeric)}
   final$league_rank <- gsub("[^0-9.-]", "", final$league_rank)
   final[6:180]<- sapply(final[6:180], gsub, pattern=",", replacement="")
   suppressWarnings({final[6:180] <- sapply(final[6:180],as.numeric)})

@@ -71,10 +71,6 @@ fte_rankings()
 ```
 
 
-
-
-
-
 # Stale Datasets  
 ### The following are datasets which are not updated in real time, but contains relevant information to Major League Soccer currently and historically. 
 
@@ -124,9 +120,10 @@ fte_rankings()
 
 # Release Notes  
 - Version: 0.0.0.9000 
-- Author: Ryan Gerda (RyanGerda@gmail.com)  
-
-
+- Author: RyanG73 on github
+- Email: rMLSpackage@gmail.com  
+- Twitter: @rMLSpackage
 
 
 # Further Documentation  
+- TBD

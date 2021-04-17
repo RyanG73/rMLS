@@ -33,7 +33,10 @@ fixtures <- function(start_season=1996,end_season=2021){
     all <- all %>% dplyr::mutate(game_url = paste0('https://fbref.com/',value))
     all$value <- NULL
     if (nrow(all) < 1) {all <- data.frame(matrix(ncol=2,nrow=1, dimnames=list(NULL, names(all))))}
-    df <- dplyr::bind_cols(df,all)
+    df <- tibble::rownames_to_column(df)
+    all <- tibble::rownames_to_column(all)
+    df <- dplyr::left_join(df,all,by='rowname')
+    df$rowname <- NULL
     total <- plyr::rbind.fill(total,df)
   }
   total$Date <- lubridate::ymd(total$Date)
@@ -91,9 +94,9 @@ fixtures <- function(start_season=1996,end_season=2021){
   total <- total %>% dplyr::left_join(dplyr::select(rMLS::team_info,team_name,team_id),by=c("Away" = "team_name"),suffix = c("","away"))
   total <- total %>% dplyr::rename(home_team_id = team_id,away_team_id = team_idaway)
   suppressWarnings({total$home_score <- as.numeric(total$home_score)})
-  total$home_score <- ifelse(is.na(total$home_score),0,total$home_score)
+  #total$home_score <- ifelse(is.na(total$home_score),0,total$home_score)
   suppressWarnings({total$away_score <- as.numeric(total$away_score)})
-  total$away_score <- ifelse(is.na(total$away_score),0,total$away_score)
+  #total$away_score <- ifelse(is.na(total$away_score),0,total$away_score)
   suppressWarnings({total$home_xGoals <- as.numeric(total$home_xGoals)})
   suppressWarnings({total$away_xGoals <- as.numeric(total$away_xGoals)})
   return(total)

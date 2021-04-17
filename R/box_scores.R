@@ -461,6 +461,8 @@ box_scores <- function(data=NULL,row=1){
   final <- final %>% dplyr::relocate(team_id, .before = 2)
   final <- final %>% dplyr::inner_join(dplyr::select(rMLS::team_info,team_id,team_name),r,by='team_id')
   final <- final %>% dplyr::relocate(team_name, .before = "team_id")
+  `%nin%` = Negate(`%in%`)
+  if("Round" %nin% colnames(data)){data$Round <- "Regular Season"}
   final <- dplyr::inner_join(dplyr::select(data,game_id,Date,Round),final,by='game_id')
   final <- final %>% dplyr::relocate(Date, .before = "number")
   final <- final %>% dplyr::relocate(Round, .before = "number")

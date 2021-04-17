@@ -15,7 +15,7 @@ fixtures <- function(start_season=1996,end_season=2021){
   for(s in sea){
     URL <- paste0("https://fbref.com/en/comps/22/",s,"/schedule/Major-League-Soccer-Scores-and-Fixtures")
     html_doc <- URL %>% xml2::read_html()
-    if (s == "11006") {table <- html_doc %>% rvest::html_nodes("#sched_11006_1")}
+    if (s == "") {table <- html_doc %>% rvest::html_nodes("#sched_11006_1")}
     else {table <- html_doc %>% rvest::html_nodes("#sched_all")}
     table1 <- table %>% rvest::html_table()
     df <- as.data.frame(table1)

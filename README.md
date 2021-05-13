@@ -87,8 +87,12 @@ fte_rankings()
 - Historical Odds (Static)
   - 2012-2020
   - All matchup results and market odds going back
-- Current Odds  
-  - *In DEVELOPMENT*   
+  
+### rMLS::current_odds
+- Current Odds (Static but updated regularly)  
+  - This dataset contains minute-by-minute odds for MLS matchups in 2021.  
+  - All results are via a sportsbook API.  
+  - The data is not cleaned prior to upload so any error by the sportsbook would be reflected in this dataset. 
 
 
 ## MLS Specific Rules  

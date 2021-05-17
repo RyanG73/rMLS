@@ -1,12 +1,17 @@
 #' A function to find individual player statistics
 #'
 #' This function pulls individual player statistics using the Football-Reference player ID as an argument. An ID must be specified as there are no default arguments. Player ID values can be found using the playerid_lookup() function, where you can supply a name to generate a tibble of possible players.
-#' @param player_stats(), ID = Football Reference ID
+#' @param player_stats, ID = Football Reference ID
 #' @keywords player, stats, statistics, player_stats
 #' @importFrom magrittr "%>%"
 #' @export
-#' @examples
-#' player_stats(id ='e0cd04e0') # this is carlos vela of LAFC
+#' \examples{
+#' \donttest{
+#'  library(rMLS)
+#' player_stats(id ='e0cd04e0')
+#' }
+#' }
+
 
 player_stats <- function(id=NULL){
   URL <- paste0("https://fbref.com/en/players/",id,"/")

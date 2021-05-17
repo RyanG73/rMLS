@@ -12,6 +12,12 @@ player_stats(id = NULL)
 \description{
 This function pulls individual player statistics using the Football-Reference player ID as an argument. An ID must be specified as there are no default arguments. Player ID values can be found using the playerid_lookup() function, where you can supply a name to generate a tibble of possible players.
 }
+\examples{
+{
+library(rMLS)
+player_stats(id ='e0cd04e0')
+}
+}
 \keyword{player,}
 \keyword{player_stats}
 \keyword{statistics,}

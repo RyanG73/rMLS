@@ -5,8 +5,8 @@
 #' @keywords player, stats, statistics, player_stats
 #' @importFrom magrittr "%>%"
 #' @export
-#' \examples{
-#'  library(rMLS)
+#' @examples{
+#' library(rMLS)
 #' player_stats(id ='e0cd04e0')
 #' }
 

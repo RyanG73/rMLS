@@ -7,14 +7,13 @@
 player_stats(id = NULL)
 }
 \arguments{
-\item{player_stats, }{no defaults}
+\item{player_stats(), }{ID = Football Reference ID}
 }
 \description{
-This function allows me to test setup
+This function pulls individual player statistics using the Football-Reference player ID as an argument. An ID must be specified as there are no default arguments. Player ID values can be found using the playerid_lookup() function, where you can supply a name to generate a tibble of possible players.
 }
 \examples{
-\dontrun{player_stats()}
-player_stats()
+player_stats(id ='e0cd04e0') # this is carlos vela of LAFC
 }
 \keyword{player,}
 \keyword{player_stats}

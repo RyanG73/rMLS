@@ -5,10 +5,9 @@
 #' @keywords player, stats, statistics, player_stats
 #' @importFrom magrittr "%>%"
 #' @export
-#' @examples{
+#' @examples
 #' library(rMLS)
 #' player_stats(id ='e0cd04e0')
-#' }
 
 
 player_stats <- function(id=NULL){

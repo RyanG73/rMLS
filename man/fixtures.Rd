@@ -13,8 +13,8 @@ fixtures(start_season = 1996, end_season = 2021)
 A function to find fixture results
 }
 \examples{
-\dontrun{fixtures()}
-fixtures()
+library(rMLS)
+fixtures(start_season=2008,end_season=2020)
 }
 \keyword{fixtures,}
 \keyword{results,}

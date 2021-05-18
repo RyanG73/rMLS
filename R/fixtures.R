@@ -4,8 +4,9 @@
 #' @keywords fixtures, results, schedule
 #' @importFrom magrittr "%>%"
 #' @export
-#' @examples \dontrun{fixtures()}
-#' fixtures()
+#' @examples
+#' library(rMLS)
+#' fixtures(start_season=2008,end_season=2020)
 
 fixtures <- function(start_season=1996,end_season=2021){
   season <- rMLS::seasons %>% dplyr::filter(Season >= start_season) %>% dplyr::filter(Season <= end_season)
@@ -71,7 +72,9 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "FC Cincinnati"="FC Cincinnati","Austin FC"="Austin FC",
                               "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
                               "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
-                              "KC Wiz"="Sporting Kansas City")
+                              "KC Wiz"="Sporting Kansas City","Minnesota Utd"="Minnesota United FC",
+                              "Atlanta"="Atlanta Utd","Chicago Fire"="Chicago Fire FC",
+                              "Inter Miami"="Inter Miami CF","Columbus SC"="Columbus Crew SC")
   total$Away <- dplyr::recode(total$Away, "Houston" = "Houston Dynamo","Seattle"="Seattle Sounders FC",
                               "CF Montréal"="CF Montreal","Orlando City"="Orlando City SC",
                               "Los Angeles FC"="Los Angeles FC","FC Dallas"="FC Dallas",
@@ -87,7 +90,9 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "FC Cincinnati"="FC Cincinnati","Austin FC"="Austin FC",
                               "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
                               "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
-                              "KC Wiz"="Sporting Kansas City")
+                              "KC Wiz"="Sporting Kansas City","Minnesota Utd"="Minnesota United FC",
+                              "Atlanta"="Atlanta Utd","Chicago Fire"="Chicago Fire FC",
+                              "Inter Miami"="Inter Miami CF","Columbus SC"="Columbus Crew SC")
   total$Home <- ifelse((total$Date < '2019-01-01')&(total$Home == 'Inter Miami CF'),'Miami Fusion',total$Home)
   total$Away <- ifelse((total$Date < '2019-01-01')&(total$Away == 'Inter Miami CF'),'Miami Fusion',total$Away)
   total <- total %>% dplyr::left_join(dplyr::select(rMLS::team_info,team_name,team_id),by=c("Home" = "team_name"))

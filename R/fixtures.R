@@ -73,7 +73,7 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
                               "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
                               "KC Wiz"="Sporting Kansas City","Minnesota Utd"="Minnesota United FC",
-                              "Atlanta"="Atlanta Utd","Chicago Fire"="Chicago Fire FC",
+                              "Atlanta Utd"="Atlanta United FC","Chicago Fire"="Chicago Fire FC",
                               "Inter Miami"="Inter Miami CF","Columbus SC"="Columbus Crew SC")
   total$Away <- dplyr::recode(total$Away, "Houston" = "Houston Dynamo","Seattle"="Seattle Sounders FC",
                               "CF Montréal"="CF Montreal","Orlando City"="Orlando City SC",
@@ -91,7 +91,7 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "Montreal"="CF Montreal","KC Wizards"="Sporting Kansas City",
                               "MetroStars"="New York Red Bulls","Dallas"="FC Dallas",
                               "KC Wiz"="Sporting Kansas City","Minnesota Utd"="Minnesota United FC",
-                              "Atlanta"="Atlanta Utd","Chicago Fire"="Chicago Fire FC",
+                              "Atlanta Utd"="Atlanta United FC","Chicago Fire"="Chicago Fire FC",
                               "Inter Miami"="Inter Miami CF","Columbus SC"="Columbus Crew SC")
   total$Home <- ifelse((total$Date < '2019-01-01')&(total$Home == 'Inter Miami CF'),'Miami Fusion',total$Home)
   total$Away <- ifelse((total$Date < '2019-01-01')&(total$Away == 'Inter Miami CF'),'Miami Fusion',total$Away)

@@ -7,10 +7,10 @@
 #' @examples \dontrun{team_stats()}
 #' team_stats()
 
-team_stats <- function(start_season=1996,end_season=2020,team_name=NULL){
+team_stats <- function(start_season=1996,end_season=2021,team_name=NULL){
   total <- tibble::tibble()
   season_table <- rMLS::seasons
-  season_table <- season_table %>% dplyr::filter(Season != 2021) %>%
+  season_table <- season_table  %>%
     dplyr::filter(Season >= start_season) %>%
     dplyr::filter(Season <= end_season)
   for(i in 1:nrow(season_table)){

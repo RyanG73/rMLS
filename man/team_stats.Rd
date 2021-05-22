@@ -4,7 +4,7 @@
 \alias{team_stats}
 \title{A function to find team statistics}
 \usage{
-team_stats(start_season = 1996, end_season = 2020, team_name = NULL)
+team_stats(start_season = 1996, end_season = 2021, team_name = NULL)
 }
 \arguments{
 \item{team_stats, }{no defaults}

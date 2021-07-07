@@ -42,6 +42,8 @@ fixtures <- function(start_season=1996,end_season=2021){
   }
   total$Date <- lubridate::ymd(total$Date)
   total$Score <- gsub("\\s*\\([^\\)]+\\)","",as.character(total$Score))
+  total$Score <- gsub("[(]","",as.character(total$Score))
+  total$Score <- gsub("[)]","",as.character(total$Score))
   total$Score <- stringr::str_trim(total$Score, side = c("both"))
   total$away_score <- substr(total$Score,3,3)
   total$home_score <- substr(total$Score,1,1)

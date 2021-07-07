@@ -77,7 +77,8 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "KC Wiz"="Sporting Kansas City","Minnesota Utd"="Minnesota United FC",
                               "Atlanta Utd"="Atlanta United FC","Chicago Fire"="Chicago Fire FC",
                               "Inter Miami"="Inter Miami CF","Columbus SC"="Columbus Crew SC",
-                              "Columbus Crew"="Columbus Crew SC","Montreal Impact"="CF Montreal")
+                              "Columbus Crew"="Columbus Crew SC","Montreal Impact"="CF Montreal",
+                              "Dallas Burn"="FC Dallas")
   total$Away <- dplyr::recode(total$Away, "Houston" = "Houston Dynamo","Seattle"="Seattle Sounders FC",
                               "CF Montréal"="CF Montreal","Orlando City"="Orlando City SC",
                               "Los Angeles FC"="Los Angeles FC","FC Dallas"="FC Dallas",
@@ -96,7 +97,8 @@ fixtures <- function(start_season=1996,end_season=2021){
                               "KC Wiz"="Sporting Kansas City","Minnesota Utd"="Minnesota United FC",
                               "Atlanta Utd"="Atlanta United FC","Chicago Fire"="Chicago Fire FC",
                               "Inter Miami"="Inter Miami CF","Columbus SC"="Columbus Crew SC",
-                              "Columbus Crew"="Columbus Crew SC","Montreal Impact"="CF Montreal")
+                              "Columbus Crew"="Columbus Crew SC","Montreal Impact"="CF Montreal",
+                              "Dallas Burn"="FC Dallas")
   total$Home <- ifelse((total$Date < '2019-01-01')&(total$Home == 'Inter Miami CF'),'Miami Fusion',total$Home)
   total$Away <- ifelse((total$Date < '2019-01-01')&(total$Away == 'Inter Miami CF'),'Miami Fusion',total$Away)
   total <- total %>% dplyr::left_join(dplyr::select(rMLS::team_info,team_name,team_id),by=c("Home" = "team_name"))
